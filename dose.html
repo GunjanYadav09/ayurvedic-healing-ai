@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayurvedic Remedies - Get Natural Solutions</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-leaves">
+            <div class="leaf leaf1">🍃</div>
+            <div class="leaf leaf2">🌿</div>
+            <div class="leaf leaf3">🍂</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Ayurvedic Healing</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="remedies.html" class="active">Remedies</a>
+                <a href="image-analyzer.html">Image Analysis</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="remedies-main">
+            <h1 class="page-title animate-fade-in">Ayurvedic Remedies Finder</h1>
+            <p class="page-subtitle">Describe your symptoms and get AI-powered personalized natural remedies</p>
+
+            <div class="input-section">
+                <textarea 
+                    id="symptomsInput" 
+                    placeholder="Describe your symptoms in detail (e.g., I have a dry cough with chest congestion, mild fever, and headache...)" 
+                    rows="5"
+                ></textarea>
+                
+                <div class="quick-symptoms">
+                    <h4>Common Symptoms:</h4>
+                    <div class="symptom-tags">
+                        <span class="symptom-tag" onclick="addSymptom('cough')">Cough</span>
+                        <span class="symptom-tag" onclick="addSymptom('cold')">Cold</span>
+                        <span class="symptom-tag" onclick="addSymptom('fever')">Fever</span>
+                        <span class="symptom-tag" onclick="addSymptom('headache')">Headache</span>
+                        <span class="symptom-tag" onclick="addSymptom('stomach pain')">Stomach Pain</span>
+                        <span class="symptom-tag" onclick="addSymptom('sore throat')">Sore Throat</span>
+                    </div>
+                </div>
+
+                <button class="submit-btn" onclick="getRemedies()">
+                    <span class="btn-text">Get Ayurvedic Remedies</span>
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                </button>
+            </div>
+
+            <div class="results-section" id="resultsSection">
+                <div class="results-placeholder">
+                    <div class="placeholder-icon">🌿</div>
+                    <p>Your personalized Ayurvedic remedies will appear here...</p>
+                    <p class="placeholder-subtext">Powered by AI - Get unique, personalized recommendations</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Made by Gunjan Yadav</p>
+        </footer>
+    </div>
+
+    <!-- API Configuration MUST be first -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/remedies.js"></script>
+</body>
+</html>
