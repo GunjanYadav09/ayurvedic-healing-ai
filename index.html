@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayurvedic Healing - AI-Powered Natural Remedies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2d5a27;
+            --secondary: #d4af37;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --accent: #8db596;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        .bubbles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(141, 181, 150, 0.15);
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100px);
+            }
+            100% {
+                bottom: 1080px;
+                transform: translateX(-100px);
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 32px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .logo h1 {
+            font-size: 26px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Page Styles */
+        .page {
+            display: none;
+            padding: 60px 0;
+            min-height: calc(100vh - 200px);
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #4a7c47 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: slideUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            animation: slideUp 1s ease 0.2s both;
+        }
+
+        .hero-button {
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            animation: slideUp 1s ease 0.4s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .hero-button:hover:before {
+            left: 100%;
+        }
+
+        .hero-button:hover {
+            background-color: #e6c44d;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(141, 181, 150, 0.2);
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-icon i {
+            font-size: 36px;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* AI Tools Section */
+        .ai-tools {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #f8f9fa, #e8f5e9);
+            position: relative;
+        }
+
+        .tool-container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(141, 181, 150, 0.2);
+        }
+
+        .tool-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tool-header i {
+            font-size: 32px;
+            color: var(--primary);
+        }
+
+        .tool-header h3 {
+            font-size: 28px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(141, 181, 150, 0.2);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(45, 90, 39, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(45, 90, 39, 0.4);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(to right, #f0f7f0, #e8f5e9);
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
+            display: none;
+            animation: fadeIn 0.8s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .remedy-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 3px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .remedy-section:hover {
+            transform: translateX(5px);
+        }
+
+        .remedy-section h5 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Remedies Section */
+        .remedies {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .remedies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .remedy-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+            border: 1px solid rgba(141, 181, 150, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .remedy-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .remedy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .remedy-card h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .remedy-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #f8f9fa, #e8f5e9);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 42px;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 20px;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image:before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .about-image div {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .about-image i {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #2c3e50);
+            color: white;
+            padding: 70px 0 20px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 15px;
+        }
+
+        /* Nature Elements */
+        .nature-element {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+            font-size: 120px;
+            animation: floatElement 20s infinite ease-in-out;
+        }
+
+        .element-1 {
+            top: 10%;
+            left: 5%;
+        }
+
+        .element-2 {
+            bottom: 15%;
+            right: 8%;
+            font-size: 100px;
+        }
+
+        @keyframes floatElement {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .tool-container {
+                padding: 30px 20px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Elements -->
+    <div class="floating-elements" id="floatingElements"></div>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    
+    <!-- Nature Elements -->
+    <div class="nature-element element-1">🌿</div>
+    <div class="nature-element element-2">🌸</div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <h1>Ayurvedic Healing 🌿</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link" data-page="home">Home</a>
+                    <a href="#" class="nav-link" data-page="features">Features</a>
+                    <a href="#" class="nav-link" data-page="ask-ai">Ask AI</a>
+                    <a href="#" class="nav-link" data-page="skin-analysis">Skin Analysis</a>
+                    <a href="#" class="nav-link" data-page="about">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page active-page">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <h2>Discover Natural Remedies with AI 🌿</h2>
+                <p>Experience the power of Ayurveda combined with artificial intelligence for personalized health solutions.</p>
+                <button class="hero-button" id="getStartedBtn">
+                    Get Started with AI <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>AI-Powered Ayurvedic Solutions ✨</h2>
+                    <p>Our advanced technology combines ancient wisdom with modern innovation for your health</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card" data-page="ask-ai">
+                        <div class="feature-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h3>AI Symptom Analysis</h3>
+                        <p>Describe your symptoms and get AI-generated personalized Ayurvedic remedies tailored to your needs.</p>
+                    </div>
+                    <div class="feature-card" data-page="skin-analysis">
+                        <div class="feature-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>AI Image Analysis</h3>
+                        <p>Upload skin images for AI-powered analysis and receive customized Ayurvedic solutions for skin health.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Natural Remedies</h3>
+                        <p>Get traditional Ayurvedic solutions enhanced with modern AI technology for optimal health benefits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remedies Section -->
+        <div class="remedies">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Popular Ayurvedic Remedies 🌸</h2>
+                    <p>Traditional Ayurvedic solutions enhanced with modern AI technology</p>
+                </div>
+                
+                <div class="remedies-grid">
+                    <div class="remedy-card">
+                        <h4>Turmeric & Honey</h4>
+                        <p>Powerful anti-inflammatory and antioxidant combination for immunity and skin health.</p>
+                    </div>
+                    <div class="remedy-card">
+                        <h4>Triphala</h4>
+                        <p>Traditional Ayurvedic formula for digestive health and detoxification.</p>
+                    </div>
+                    <div class="remedy-card">
+                        <h4>Ashwagandha</h4>
+                        <p>Adaptogenic herb for stress reduction, energy, and overall vitality.</p>
+                    </div>
+                    <div class="remedy-card">
+                        <h4>Neem</h4>
+                        <p>Blood purifier and skin health promoter with antibacterial properties.</p>
+                    </div>
+                    <div class="remedy-card">
+                        <h4>Ginger & Lemon</h4>
+                        <p>Digestive aid and immunity booster, especially effective for colds.</p>
+                    </div>
+                    <div class="remedy-card">
+                        <h4>Tulsi (Holy Basil)</h4>
+                        <p>Stress reliever and respiratory health promoter with antimicrobial properties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Page -->
+    <section id="features" class="page">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our AI-Powered Features ✨</h2>
+                <p>Discover how we combine ancient Ayurvedic wisdom with modern AI technology</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Intelligent Analysis</h3>
+                    <p>Our AI algorithms analyze your symptoms and health data to provide personalized Ayurvedic recommendations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Personalized Plans</h3>
+                    <p>Get customized Ayurvedic treatment plans based on your unique body constitution and health concerns.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your health journey with AI-powered insights and adjustments to your treatment plan.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Knowledge Base</h3>
+                    <p>Access our extensive database of Ayurvedic remedies, herbs, and treatments enhanced with AI insights.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Accessible Anywhere</h3>
+                    <p>Use our AI tools from any device, anytime, without any sign-up requirements or fees.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Privacy Focused</h3>
+                    <p>Your health data remains private and secure. We don't store personal information without permission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ask AI Page -->
+    <section id="ask-ai" class="page">
+        <div class="ai-tools">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Ask Our AI Ayurvedic Expert 🩺</h2>
+                    <p>Describe your health concerns and get personalized Ayurvedic recommendations</p>
+                </div>
+                
+                <div class="tool-container">
+                    <div class="tool-header">
+                        <i class="fas fa-stethoscope"></i>
+                        <h3>AI Symptom Analysis</h3>
+                    </div>
+                    <p>Describe your symptoms in detail for personalized Ayurvedic recommendations</p>
+                    
+                    <form id="symptomForm">
+                        <div class="form-group">
+                            <label for="symptoms">Describe Your Symptoms</label>
+                            <textarea id="symptoms" placeholder="Please describe your symptoms, when they started, severity, and any patterns you've noticed..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duration of Symptoms</label>
+                            <select id="duration" required>
+                                <option value="">Select duration</option>
+                                <option value="recent">Recent (less than a week)</option>
+                                <option value="short">Short-term (1-4 weeks)</option>
+                                <option value="medium">Medium-term (1-6 months)</option>
+                                <option value="long">Long-term (over 6 months)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn">Analyze My Symptoms <i class="fas fa-search"></i></button>
+                    </form>
+                    
+                    <div class="result-box" id="symptomResult">
+                        <h4><i class="fas fa-file-medical-alt"></i> AI Analysis Results</h4>
+                        <div id="symptomAnalysisText"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skin Analysis Page -->
+    <section id="skin-analysis" class="page">
+        <div class="ai-tools">
+            <div class="container">
+                <div class="section-title">
+                    <h2>AI Skin Analysis 🌸</h2>
+                    <p>Upload skin images or describe your skin condition for AI-powered Ayurvedic solutions</p>
+                </div>
+                
+                <div class="tool-container">
+                    <div class="tool-header">
+                        <i class="fas fa-camera"></i>
+                        <h3>AI Image Analysis</h3>
+                    </div>
+                    <p>Upload skin images for AI-powered analysis and Ayurvedic solutions</p>
+                    
+                    <form id="imageForm">
+                        <div class="form-group">
+                            <label for="imageUpload">Upload Skin Image</label>
+                            <input type="file" id="imageUpload" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="skinDescription">Describe Your Skin Condition</label>
+                            <textarea id="skinDescription" placeholder="Please describe your skin condition, affected areas, and any symptoms like redness, dryness, or irritation..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Analyze My Skin <i class="fas fa-camera"></i></button>
+                    </form>
+                    
+                    <div class="result-box" id="imageResult">
+                        <h4><i class="fas fa-file-medical-alt"></i> AI Analysis Results</h4>
+                        <div id="imageAnalysisText"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+        <div class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>About Ayurvedic Healing 🌿</h2>
+                        <p>Ayurvedic Healing is an innovative platform that combines the ancient wisdom of Ayurveda with modern artificial intelligence technology. Our mission is to make personalized Ayurvedic health solutions accessible to everyone.</p>
+                        <p>We believe that everyone deserves access to natural, holistic health solutions. By leveraging AI, we can provide personalized recommendations based on thousands of years of Ayurvedic knowledge combined with modern scientific understanding.</p>
+                        <p>Our platform is completely free to use, with no sign-up requirements. We respect your privacy and believe that healthcare should be accessible to all.</p>
+                    </div>
+                    <div class="about-image">
+                        <div>
+                            <i class="fas fa-leaf"></i>
+                            <p>Ancient Wisdom • Modern Technology</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Ayurvedic Healing</h3>
+                    <p>Combining ancient Ayurvedic wisdom with modern AI technology for personalized health solutions.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="features"><i class="fas fa-star"></i> Features</a></li>
+                        <li><a href="#" class="nav-link" data-page="ask-ai"><i class="fas fa-robot"></i> Ask AI</a></li>
+                        <li><a href="#" class="nav-link" data-page="skin-analysis"><i class="fas fa-camera"></i> Skin Analysis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>AI Tools</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="ask-ai"><i class="fas fa-stethoscope"></i> Symptom Analysis</a></li>
+                        <li><a href="#" class="nav-link" data-page="skin-analysis"><i class="fas fa-camera"></i> Skin Analysis</a></li>
+                        <li><a href="#" class="nav-link" data-page="features"><i class="fas fa-seedling"></i> Natural Remedies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Ayurvedic Healing. Open-source project. No sign-up required. 🌱</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingElements = document.getElementById('floatingElements');
+            const emojis = ['🍃', '🌿', '🍂', '🌸', '🌱', '💮', '🌼', '🌺'];
+            
+            for (let i = 0; i < 12; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDelay = Math.random() * 20 + 's';
+                element.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                floatingElements.appendChild(element);
+            }
+
+            // Page navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    pages.forEach(page => {
+                        page.classList.remove('active-page');
+                    });
+                    
+                    // Show target page
+                    document.getElementById(targetPage).classList.add('active-page');
+                    
+                    // Update active nav link
+                    navLinks.forEach(nav => {
+                        nav.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            
+            // Feature cards navigation
+            const featureCards = document.querySelectorAll('.feature-card[data-page]');
+            featureCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    pages.forEach(page => {
+                        page.classList.remove('active-page');
+                    });
+                    
+                    // Show target page
+                    document.getElementById(targetPage).classList.add('active-page');
+                    
+                    // Update active nav link
+                    navLinks.forEach(nav => {
+                        nav.classList.remove('active');
+                        if (nav.getAttribute('data-page') === targetPage) {
+                            nav.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Symptom Analysis Form
+            document.getElementById('symptomForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const symptoms = document.getElementById('symptoms').value;
+                const duration = document.getElementById('duration').value;
+                
+                // Show loading state
+                document.getElementById('symptomAnalysisText').innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> AI is analyzing your symptoms...</p>';
+                document.getElementById('symptomResult').style.display = 'block';
+                
+                // Simulate AI processing time
+                setTimeout(function() {
+                    const aiResponse = generateAIResponse(symptoms, duration);
+                    document.getElementById('symptomAnalysisText').innerHTML = aiResponse;
+                    
+                    // Scroll to results
+                    document.getElementById('symptomResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 2000);
+            });
+            
+            // Image Analysis Form
+            document.getElementById('imageForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const skinDescription = document.getElementById('skinDescription').value;
+                
+                // Simple AI response simulation for skin
+                document.getElementById('imageAnalysisText').innerHTML = `
+                    <p><strong>Skin Description:</strong> ${skinDescription}</p>
+                    <p><strong>AI Analysis:</strong> Based on your description, our AI has analyzed your skin concerns and recommends the following Ayurvedic approach:</p>
+                    <p>For optimal skin health, consider using a neem and turmeric face pack twice weekly. Internally, drinking aloe vera juice daily can help purify the blood and improve skin texture. Maintain a balanced diet with plenty of fresh fruits and vegetables, and ensure proper hydration.</p>
+                    <p><em>Note: This is a simulated AI analysis. For persistent skin issues, please consult a dermatologist.</em></p>
+                `;
+                
+                document.getElementById('imageResult').style.display = 'block';
+                
+                // Scroll to results
+                document.getElementById('imageResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+            
+            // Get Started buttons
+            document.getElementById('getStartedBtn').addEventListener('click', function() {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active-page');
+                });
+                
+                // Show ask-ai page
+                document.getElementById('ask-ai').classList.add('active-page');
+                
+                // Update active nav link
+                navLinks.forEach(nav => {
+                    nav.classList.remove('active');
+                    if (nav.getAttribute('data-page') === 'ask-ai') {
+                        nav.classList.add('active');
+                    }
+                });
+            });
+            
+            // Animation for feature cards on scroll
+            const featureCardsAll = document.querySelectorAll('.feature-card');
+            const remedyCards = document.querySelectorAll('.remedy-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            featureCardsAll.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(card);
+            });
+            
+            remedyCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(card);
+            });
+        });
+
+        // Advanced AI Response Generator
+        const generateAIResponse = (symptoms, duration) => {
+            const symptomsLower = symptoms.toLowerCase();
+            const durationText = document.getElementById('duration').options[document.getElementById('duration').selectedIndex].text;
+            
+            // Symptom pattern detection
+            const patterns = {
+                // Respiratory issues
+                respiratory: {
+                    keywords: ['cough', 'cold', 'fever', 'sore throat', 'congestion', 'runny nose', 'sneezing', 'breathing', 'chest', 'lungs'],
+                    remedies: {
+                        recent: [
+                            "Tulsi (Holy Basil) tea with ginger and honey 3 times daily",
+                            "Steam inhalation with eucalyptus or mint leaves",
+                            "Light, warm meals like vegetable soups and khichdi"
+                        ],
+                        short: [
+                            "Ayurvedic kadha with tulsi, ginger, black pepper, and cinnamon",
+                            "Nasya therapy with medicated oils like Anu Taila",
+                            "Avoid cold foods and drinks; focus on warm liquids"
+                        ],
+                        medium: [
+                            "Sitopaladi churna with honey for persistent cough",
+                            "Regular practice of pranayama and breathing exercises",
+                            "Diet modification to reduce Kapha dosha - avoid dairy and heavy foods"
+                        ],
+                        long: [
+                            "Professional Panchakarma therapy for deep respiratory cleansing",
+                            "Herbal formulations like Chyawanprash for immunity building",
+                            "Lifestyle changes including yoga asanas and meditation"
+                        ]
+                    },
+                    explanation: "Your symptoms indicate a respiratory imbalance, likely related to Kapha and Vata doshas. The remedies focus on clearing congestion, reducing inflammation, and strengthening respiratory immunity."
+                },
+                
+                // Digestive issues
+                digestive: {
+                    keywords: ['stomach', 'digestion', 'bloating', 'gas', 'constipation', 'diarrhea', 'indigestion', 'acid', 'heartburn', 'nausea'],
+                    remedies: {
+                        recent: [
+                            "Ginger tea with lemon before meals to stimulate digestion",
+                            "Triphala churna in warm water at bedtime",
+                            "Light, easily digestible foods; avoid heavy, oily meals"
+                        ],
+                        short: [
+                            "Ajwain (carom seeds) water for gas and bloating",
+                            "Fennel seed tea after meals for better digestion",
+                            "Include digestive spices like cumin, coriander, and fennel in cooking"
+                        ],
+                        medium: [
+                            "Regular consumption of buttermilk with cumin and ginger",
+                            "Ayurvedic detox with light fasting or mono-diet",
+                            "Herbal formulations like Hingvastak churna for chronic indigestion"
+                        ],
+                        long: [
+                            "Comprehensive digestive rejuvenation with Panchakarma",
+                            "Daily Abhyanga (self-massage) with warm sesame oil",
+                            "Lifestyle changes including regular meal times and mindful eating"
+                        ]
+                    },
+                    explanation: "Your digestive symptoms suggest an imbalance in Agni (digestive fire) and possible accumulation of Ama (toxins). The approach focuses on restoring digestive strength and eliminating toxins."
+                },
+                
+                // Skin issues
+                skin: {
+                    keywords: ['skin', 'rash', 'acne', 'pimple', 'dry', 'itchy', 'eczema', 'psoriasis', 'redness', 'irritation'],
+                    remedies: {
+                        recent: [
+                            "Neem and turmeric paste application on affected areas",
+                            "Aloe vera gel for soothing inflammation",
+                            "Drink plenty of warm water with lemon to detoxify"
+                        ],
+                        short: [
+                            "Manjistha and neem capsules for blood purification",
+                            "Sandalwood and rose water face pack for cooling effect",
+                            "Diet modification - reduce spicy, oily, and processed foods"
+                        ],
+                        medium: [
+                            "Panchakarma therapies like Virechana for detoxification",
+                            "Regular consumption of ghee with turmeric for internal healing",
+                            "Yoga asanas that improve circulation and detoxification"
+                        ],
+                        long: [
+                            "Comprehensive Ayurvedic treatment under professional guidance",
+                            "Rasayana therapies for skin rejuvenation",
+                            "Lifestyle modifications including stress management"
+                        ]
+                    },
+                    explanation: "Skin issues often reflect internal imbalances, particularly in Rakta dhatu (blood tissue) and Pitta dosha. The treatment focuses on both internal purification and external care."
+                },
+                
+                // Stress and mental health
+                mental: {
+                    keywords: ['stress', 'anxiety', 'depression', 'insomnia', 'sleep', 'tension', 'worry', 'nervous', 'mind', 'mental'],
+                    remedies: {
+                        recent: [
+                            "Ashwagandha powder with warm milk before bedtime",
+                            "Brahmi tea for mental calmness and clarity",
+                            "Practice of deep breathing and meditation"
+                        ],
+                        short: [
+                            "Shankhapushpi syrup for better sleep and reduced anxiety",
+                            "Daily Abhyanga (self-massage) with Brahmi oil",
+                            "Nasya therapy with Anu Taila for mental clarity"
+                        ],
+                        medium: [
+                            "Regular practice of yoga nidra and pranayama",
+                            "Medicated ghee preparations like Brahmi ghrita",
+                            "Lifestyle routine (Dinacharya) for balance and stability"
+                        ],
+                        long: [
+                            "Panchakarma therapies like Shirodhara for deep relaxation",
+                            "Rasayana therapies for nervous system rejuvenation",
+                            "Comprehensive lifestyle overhaul with professional guidance"
+                        ]
+                    },
+                    explanation: "Mental health symptoms indicate Vata and Pitta imbalances affecting the nervous system. The approach focuses on calming the mind, strengthening the nervous system, and establishing balance."
+                },
+                
+                // Joint and muscle pain
+                pain: {
+                    keywords: ['pain', 'ache', 'joint', 'muscle', 'arthritis', 'stiff', 'back', 'neck', 'shoulder', 'knee'],
+                    remedies: {
+                        recent: [
+                            "Massage with warm sesame or Mahanarayan oil",
+                            "Ginger and turmeric paste application on painful areas",
+                            "Epsom salt baths for muscle relaxation"
+                        ],
+                        short: [
+                            "Yogaraj guggulu for joint inflammation and pain",
+                            "Castor oil packs for deep pain relief",
+                            "Gentle yoga stretches and movement therapy"
+                        ],
+                        medium: [
+                            "Panchakarma therapies like Basti for joint health",
+                            "Herbal decoctions with Guggulu and Shallaki",
+                            "Diet modification to reduce inflammatory foods"
+                        ],
+                        long: [
+                            "Comprehensive Panchakarma treatment program",
+                            "Rasayana therapies for tissue rejuvenation",
+                            "Lifestyle modifications including regular exercise and weight management"
+                        ]
+                    },
+                    explanation: "Pain symptoms suggest Vata imbalance and possible accumulation of Ama in the joints. Treatment focuses on reducing inflammation, improving circulation, and nourishing the tissues."
+                }
+            };
+
+            // Determine which pattern matches best
+            let matchedPattern = null;
+            let maxMatches = 0;
+
+            for (const [patternName, pattern] of Object.entries(patterns)) {
+                const matches = pattern.keywords.filter(keyword => 
+                    symptomsLower.includes(keyword)
+                ).length;
+                
+                if (matches > maxMatches) {
+                    maxMatches = matches;
+                    matchedPattern = patternName;
+                }
+            }
+
+            // If no specific pattern matched, use general approach
+            if (!matchedPattern || maxMatches === 0) {
+                matchedPattern = 'general';
+            }
+
+            // Generate response based on matched pattern
+            let remedies, explanation;
+            
+            if (matchedPattern === 'general') {
+                remedies = {
+                    recent: [
+                        "Ginger tea with honey and lemon for general wellness",
+                        "Light, balanced diet with all six tastes",
+                        "Adequate rest and hydration"
+                    ],
+                    short: [
+                        "Triphala for gentle detoxification",
+                        "Daily self-massage with warm oil",
+                        "Moderate exercise and stress management"
+                    ],
+                    medium: [
+                        "Consultation with Ayurvedic practitioner for personalized plan",
+                        "Seasonal detoxification practices",
+                        "Yoga and meditation for overall balance"
+                    ],
+                    long: [
+                        "Comprehensive Ayurvedic assessment required",
+                        "Panchakarma therapy recommended",
+                        "Lifestyle and dietary overhaul under guidance"
+                    ]
+                };
+                explanation = "Your symptoms indicate a general imbalance that requires a holistic approach. The recommendations focus on restoring overall balance and strengthening your natural healing capacity.";
+            } else {
+                remedies = patterns[matchedPattern].remedies;
+                explanation = patterns[matchedPattern].explanation;
+            }
+
+            // Build the response HTML
+            let responseHTML = `
+                <p><strong>Your Symptoms:</strong> ${symptoms}</p>
+                <p><strong>Duration:</strong> ${durationText}</p>
+                
+                <div class="remedy-section">
+                    <h5><i class="fas fa-leaf"></i> Ayurvedic Diagnosis</h5>
+                    <p>${explanation}</p>
+                </div>
+                
+                <div class="remedy-section">
+                    <h5><i class="fas fa-prescription-bottle-alt"></i> Recommended Remedies</h5>
+                    <ul>
+            `;
+
+            remedies[duration].forEach(remedy => {
+                responseHTML += `<li>${remedy}</li>`;
+            });
+
+            responseHTML += `
+                    </ul>
+                </div>
+                
+                <div class="remedy-section">
+                    <h5><i class="fas fa-heartbeat"></i> Additional Recommendations</h5>
+                    <ul>
+                        <li>Follow a regular daily routine (Dinacharya)</li>
+                        <li>Practice stress-reduction techniques like meditation</li>
+                        <li>Stay hydrated with warm water throughout the day</li>
+                        <li>Get adequate sleep and rest</li>
+                    </ul>
+                </div>
+                
+                <p><em>Note: This AI analysis provides general Ayurvedic guidance. For persistent or severe symptoms, please consult with a qualified Ayurvedic practitioner or healthcare professional.</em></p>
+            `;
+
+            return responseHTML;
+        };
+    </script>
+</body>
+</html>
