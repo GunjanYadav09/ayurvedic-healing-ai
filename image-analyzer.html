@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Analysis - Ayurvedic Healing</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-leaves">
+            <div class="leaf leaf1">🍃</div>
+            <div class="leaf leaf2">🌿</div>
+            <div class="leaf leaf3">🍂</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Ayurvedic Healing</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="remedies.html">Remedies</a>
+                <a href="image-analyzer.html" class="active">Image Analysis</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="image-analyzer-main">
+            <h1 class="page-title animate-fade-in">Skin Condition Analyzer</h1>
+            <p class="page-subtitle">Upload an image of skin condition for AI-powered Ayurvedic analysis</p>
+
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📷</div>
+                    <h3>Upload Skin Image</h3>
+                    <p>Drag & drop or click to upload</p>
+                    <p class="file-types">Supports: JPG, PNG, WEBP (Max 5MB)</p>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <button class="upload-btn" onclick="document.getElementById('imageInput').click()">
+                        Choose Image
+                    </button>
+                </div>
+
+                <div class="image-preview" id="imagePreview">
+                    <img id="previewImage" alt="Image preview">
+                    <div class="preview-placeholder">
+                        <div class="placeholder-icon">🖼️</div>
+                        <p>Image preview will appear here</p>
+                    </div>
+                    <button class="analyze-btn" id="analyzeBtn" onclick="analyzeImage()">
+                        Analyze Image
+                        <div class="loading-spinner" id="analyzeSpinner"></div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="analysis-results" id="analysisResults">
+                <div class="results-placeholder">
+                    <div class="placeholder-icon">🔍</div>
+                    <p>AI analysis results will appear here...</p>
+                    <p class="placeholder-subtext">Get personalized Ayurvedic remedies based on your skin condition</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Made by Gunjan Yadav</p>
+        </footer>
+    </div>
+
+    <!-- API Configuration MUST be first -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/image-analyzer.js"></script>
+</body>
+</html>
